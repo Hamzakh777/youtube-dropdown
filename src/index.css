@@ -70,6 +70,7 @@ a {
 	border-radius: 50%;
 	background-color: #484a4d;
 	transition: filter 300ms;
+	cursor: pointer;
 }
 
 .icon-button:hover {
