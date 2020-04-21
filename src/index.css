@@ -67,6 +67,7 @@ a {
 	height: var(--button-size);
 	padding: 5px;
 	margin: 2px;
+	margin-right: 8px;
 	border-radius: 50%;
 	background-color: #484a4d;
 	transition: filter 300ms;
@@ -94,9 +95,9 @@ a {
 	background-color: var(--bg);
 	border: var(--border);
 	border-radius: var(--border-radius);
-	padding: 1rem;
 	overflow: hidden;
 	color: #ffffff;
+	transition: height var(--speed) ease;
 }
 
 .menu-item {
@@ -109,10 +110,46 @@ a {
 	cursor: pointer;
 }
 
+.menu {
+	padding: 1rem;
+}
+
 .menu-item:hover {
 	background-color: #525357;
 }
 
 .icon-right {
 	margin-left: auto;
+}
+
+/* CSSTransition classes  */
+.menu-primary-enter {
+  position: absolute;
+  transform: translateX(-110%);
+}
+.menu-primary-enter-active {
+  transform: translateX(0%);
+  transition: all var(--speed) ease;
+}
+.menu-primary-exit {
+position: absolute;
+}
+.menu-primary-exit-active {
+  transform: translateX(-110%);
+  transition: all var(--speed) ease;
+}
+
+.menu-secondary-enter {
+  transform: translateX(110%);
+}
+.menu-secondary-enter-active {
+  transform: translateX(0%);
+  transition: all var(--speed) ease;
+}
+.menu-secondary-exit {
+	position: absolute;
+}
+.menu-secondary-exit-active {
+  transform: translateX(110%);
+  transition: all var(--speed) ease;
 }

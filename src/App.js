@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import './index.css';
 import { ReactComponent as BellIcon } from './icons/bell.svg';
 import { ReactComponent as MessengerIcon } from './icons/messenger.svg';
@@ -33,10 +34,17 @@ function Navbar(props) {
 }
 
 function DropdownMenu() {
+  const [activeMenu, setActiveMenu] = useState('main') // settings, animals
+  const [menuHeight, setMenuHeight] = useState(null);
+
+  function calcHeight(el) {
+    const height = el.offsetHeight;
+    setMenuHeight(height);
+  }
 
   function DropdownItem(props) {
     return (
-      <div className="menu-item">
+      <div className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
         <span className="icon-button">{ props.leftIcon }</span>
         {props.children}
         <span className="icon-right">{props.rightIcon}</span>
@@ -45,17 +53,45 @@ function DropdownMenu() {
   }
 
   return (
-   <div className="dropdown">
-      <DropdownItem
+    <div className="dropdown" style={{ height: menuHeight}}>
+      <CSSTransition
+        in={activeMenu === 'main'}
+        unmountOnExit
+        timeout={500}
+        classNames="menu-primary"
+        onEnter={calcHeight}
       >
-        My profile
-      </DropdownItem>
-      <DropdownItem
-        leftIcon={<CogIcon />}
-        rightIcon={<ChevronIcon />} 
+        <div className="menu">
+          <DropdownItem>
+            My profile
+          </DropdownItem>
+          <DropdownItem
+            leftIcon={<CogIcon />}
+            rightIcon={<ChevronIcon />} 
+            goToMenu="settings"
+          >
+            settings
+          </DropdownItem>
+        </div>
+      </CSSTransition>
+      
+      <CSSTransition
+        in={activeMenu === 'settings'}
+        unmountOnExit
+        timeout={500}
+        classNames="menu-secondary"
+        onEnter={calcHeight}
       >
-
-      </DropdownItem>
+        <div className="menu">
+          <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
+            <h2>My Tutorial</h2>
+          </DropdownItem>
+          <DropdownItem leftIcon={<BoltIcon />}>HTML</DropdownItem>
+          <DropdownItem leftIcon={<BoltIcon />}>CSS</DropdownItem>
+          <DropdownItem leftIcon={<BoltIcon />}>JavaScript</DropdownItem>
+          <DropdownItem leftIcon={<BoltIcon />}>Awesome!</DropdownItem>
+        </div>
+      </CSSTransition>
     </div>
   );
 }
