@@ -1,21 +1,33 @@
 import React from 'react';
-import './App.css';
+import './index.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Navbar>
+      <NavItem icon="asdf " />
+      <NavItem icon="asdf " />
+      <NavItem icon="asdf " />
+    </Navbar>
   );
 }
+
+function Navbar(props) {
+  return (
+    <nav className="navbar">
+      <ul className="navbar-nav"> { props.children }</ul>
+    </nav>
+  );
+}
+
+function NavItem(props) {
+  return (
+    <li className="nav-item">
+      <div href="#" className="icon-button">
+        { props.icon }
+      </div>
+    </li>
+  );
+}
+
 
 export default App;
