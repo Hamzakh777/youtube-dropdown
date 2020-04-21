@@ -73,6 +73,46 @@ a {
 	cursor: pointer;
 }
 
+.icon-button svg {
+	width: 20px;
+	height: 20px;
+	fill: var(--text-color);
+
+}
+
 .icon-button:hover {
 	filter: brightness(1.2)
+}
+
+/* dropdown menu */
+
+.dropdown {
+	position: absolute;
+	top: 58px;
+	width: 300px;
+	transform: translateX(-45%);
+	background-color: var(--bg);
+	border: var(--border);
+	border-radius: var(--border-radius);
+	padding: 1rem;
+	overflow: hidden;
+	color: #ffffff;
+}
+
+.menu-item {
+	display: flex;
+	align-items: center;
+	border-radius: var(--border-radius);
+	transition: background var(--speed);
+	padding: 0.5rem;
+	height: 50px;
+	cursor: pointer;
+}
+
+.menu-item:hover {
+	background-color: #525357;
+}
+
+.icon-right {
+	margin-left: auto;
 }
